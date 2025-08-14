@@ -6,7 +6,6 @@
 import { SignJWT } from 'jose';
 import {
   SecEventPayload,
-  SecEventOptions,
   SignedSecEvent,
   IdGenerator,
   SigningKey,
@@ -53,9 +52,15 @@ export class SecEventBuilder {
   private signingKey?: SigningKey;
 
   constructor(private options: BuilderOptions = {}) {
-    this.issuer = options.defaultIssuer;
-    this.audience = options.defaultAudience;
-    this.signingKey = options.signingKey;
+    if (options.defaultIssuer !== undefined) {
+      this.issuer = options.defaultIssuer;
+    }
+    if (options.defaultAudience !== undefined) {
+      this.audience = options.defaultAudience;
+    }
+    if (options.signingKey !== undefined) {
+      this.signingKey = options.signingKey;
+    }
   }
 
   /**
@@ -210,14 +215,26 @@ export class SecEventBuilder {
    * Reset the builder
    */
   reset(): this {
-    this.issuer = this.options.defaultIssuer;
-    this.audience = this.options.defaultAudience;
-    this.jti = undefined;
-    this.iat = undefined;
-    this.txn = undefined;
+    if (this.options.defaultIssuer !== undefined) {
+      this.issuer = this.options.defaultIssuer;
+    } else {
+      delete this.issuer;
+    }
+    if (this.options.defaultAudience !== undefined) {
+      this.audience = this.options.defaultAudience;
+    } else {
+      delete this.audience;
+    }
+    delete this.jti;
+    delete this.iat;
+    delete this.txn;
     this.events = {};
     this.additionalClaims = {};
-    this.signingKey = this.options.signingKey;
+    if (this.options.signingKey !== undefined) {
+      this.signingKey = this.options.signingKey;
+    } else {
+      delete this.signingKey;
+    }
     return this;
   }
 
@@ -226,14 +243,26 @@ export class SecEventBuilder {
    */
   clone(): SecEventBuilder {
     const builder = new SecEventBuilder(this.options);
-    builder.issuer = this.issuer;
-    builder.audience = this.audience;
-    builder.jti = this.jti;
-    builder.iat = this.iat;
-    builder.txn = this.txn;
+    if (this.issuer !== undefined) {
+      builder.issuer = this.issuer;
+    }
+    if (this.audience !== undefined) {
+      builder.audience = this.audience;
+    }
+    if (this.jti !== undefined) {
+      builder.jti = this.jti;
+    }
+    if (this.iat !== undefined) {
+      builder.iat = this.iat;
+    }
+    if (this.txn !== undefined) {
+      builder.txn = this.txn;
+    }
     builder.events = { ...this.events };
     builder.additionalClaims = { ...this.additionalClaims };
-    builder.signingKey = this.signingKey;
+    if (this.signingKey !== undefined) {
+      builder.signingKey = this.signingKey;
+    }
     return builder;
   }
 }

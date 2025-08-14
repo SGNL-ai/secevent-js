@@ -92,7 +92,8 @@ export class SigningUtils {
    * Import a JWK
    */
   static async importJWK(jwk: Record<string, unknown>, alg: Algorithm): Promise<KeyLike> {
-    return importJWK(jwk, alg);
+    const result = await importJWK(jwk as unknown as Parameters<typeof importJWK>[0], alg);
+    return result as KeyLike;
   }
 
   /**
@@ -147,7 +148,7 @@ export class SigningUtils {
     return {
       key: keyLike,
       alg,
-      kid,
+      ...(kid !== undefined && { kid }),
     };
   }
 
@@ -158,7 +159,7 @@ export class SigningUtils {
     return {
       key: new TextEncoder().encode(secret) as unknown as KeyLike,
       alg,
-      kid,
+      ...(kid !== undefined && { kid }),
     };
   }
 }

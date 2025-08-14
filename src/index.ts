@@ -12,10 +12,12 @@ export * from './types/events';
 export * from './types/secevent';
 
 // Builder
-export { SecEventBuilder, createBuilder, BuilderOptions } from './builder/builder';
+export { SecEventBuilder, createBuilder } from './builder/builder';
+export type { BuilderOptions } from './builder/builder';
 
 // Parser
-export { SecEventParser, createParser, ParserOptions } from './parser/parser';
+export { SecEventParser, createParser } from './parser/parser';
+export type { ParserOptions } from './parser/parser';
 
 // ID Generation
 export {

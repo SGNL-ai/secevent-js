@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Vulnerability
+    url: mailto:security@sgnl.ai
+    about: Please report security vulnerabilities via email
+  - name: Documentation
+    url: https://github.com/SGNL-ai/secevent-js#readme
+    about: Check our documentation for usage examples
+  - name: Community Support
+    url: https://github.com/SGNL-ai/secevent-js/discussions
+    about: Ask questions and discuss with the community
+  - name: Commercial Support
+    url: https://sgnl.ai/contact
+    about: Get enterprise support from SGNL.ai

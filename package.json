@@ -1,0 +1,93 @@
+{
+  "name": "@sgnl/secevent",
+  "version": "1.0.0",
+  "description": "A comprehensive JavaScript/TypeScript library for Security Event Tokens (SET) implementing RFC 8417, CAEP, and SSF standards",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "dev": "tsup --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\" \"test/**/*.{ts,js}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json}\" \"test/**/*.{ts,js}\"",
+    "prepublishOnly": "npm run build && npm run test",
+    "docs": "typedoc --out docs src/index.ts",
+    "version": "npm run format && git add -A src test",
+    "postversion": "git push && git push --tags",
+    "release": "npm version patch && npm publish --access public",
+    "release:minor": "npm version minor && npm publish --access public",
+    "release:major": "npm version major && npm publish --access public",
+    "release:beta": "npm version prerelease --preid=beta && npm publish --tag beta --access public",
+    "release:alpha": "npm version prerelease --preid=alpha && npm publish --tag alpha --access public"
+  },
+  "keywords": [
+    "security",
+    "jwt",
+    "set",
+    "security-event-token",
+    "caep",
+    "ssf",
+    "rfc8417",
+    "oauth",
+    "openid",
+    "authentication",
+    "authorization",
+    "continuous-access-evaluation",
+    "shared-signals",
+    "sgnl"
+  ],
+  "author": "SGNL.ai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SGNL-ai/secevent-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SGNL-ai/secevent-js/issues"
+  },
+  "homepage": "https://github.com/SGNL-ai/secevent-js#readme",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "jose": "^5.2.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.1",
+    "typedoc": "^0.25.6",
+    "typescript": "^5.3.3"
+  }
+}

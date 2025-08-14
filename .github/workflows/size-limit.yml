@@ -1,0 +1,56 @@
+name: Bundle Size Check
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  size:
+    name: Check Bundle Size
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build library
+        run: npm run build
+        
+      - name: Check bundle size
+        run: |
+          # Get size of built files
+          echo "## Bundle Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          
+          for file in dist/*; do
+            if [ -f "$file" ]; then
+              size=$(du -h "$file" | cut -f1)
+              name=$(basename "$file")
+              echo "| $name | $size |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          
+          # Check if total size exceeds limit (e.g., 100KB)
+          total_size=$(du -sb dist | cut -f1)
+          max_size=$((100 * 1024))  # 100KB in bytes
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total size:** $(du -sh dist | cut -f1)" >> $GITHUB_STEP_SUMMARY
+          
+          if [ $total_size -gt $max_size ]; then
+            echo "⚠️ Bundle size exceeds 100KB limit!" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ Bundle size is within limits" >> $GITHUB_STEP_SUMMARY
+          fi

@@ -1,0 +1,25 @@
+# Code Owners for @sgnl/secevent
+
+# These owners will be the default owners for everything in the repo
+* @SGNL-ai/engineering
+
+# Core library files
+/src/ @SGNL-ai/security-team @SGNL-ai/engineering
+/src/types/ @SGNL-ai/architecture
+/src/signing/ @SGNL-ai/security-team
+
+# Tests
+/test/ @SGNL-ai/engineering @SGNL-ai/qa
+
+# Documentation
+*.md @SGNL-ai/documentation @SGNL-ai/engineering
+/docs/ @SGNL-ai/documentation
+
+# CI/CD
+/.github/ @SGNL-ai/devops @SGNL-ai/engineering
+
+# Dependencies and configs
+package.json @SGNL-ai/engineering @SGNL-ai/security-team
+package-lock.json @SGNL-ai/engineering @SGNL-ai/security-team
+tsconfig.json @SGNL-ai/engineering
+.eslintrc.js @SGNL-ai/engineering

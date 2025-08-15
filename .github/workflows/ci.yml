@@ -18,9 +18,10 @@ jobs:
       fail-fast: false
         
     steps:
-      - name: Configure git line endings
-        if: runner.os == 'Windows'
-        run: git config --global core.autocrlf false
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
         
       - name: Checkout code
         uses: actions/checkout@v4
@@ -58,9 +59,10 @@ jobs:
     needs: test
     
     steps:
-      - name: Configure git line endings
-        if: runner.os == 'Windows'
-        run: git config --global core.autocrlf false
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
         
       - name: Checkout code
         uses: actions/checkout@v4
@@ -89,9 +91,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Configure git line endings
-        if: runner.os == 'Windows'
-        run: git config --global core.autocrlf false
+      - name: Set git to use LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
         
       - name: Checkout code
         uses: actions/checkout@v4

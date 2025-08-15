@@ -12,6 +12,8 @@ on:
 jobs:
   security:
     runs-on: ubuntu-latest
+    # This is optional - don't fail the build if Snyk has issues
+    continue-on-error: true
     
     steps:
       - name: Checkout code
@@ -26,25 +28,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Snyk to check for vulnerabilities
+      - name: Run Snyk Security Scan
         uses: snyk/actions/node@master
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high --sarif-file-output=snyk.sarif
-
-      - name: Upload Snyk results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        continue-on-error: true
-        with:
-          sarif_file: snyk.sarif
-
-      - name: Monitor project with Snyk
-        uses: snyk/actions/node@master
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor
+          args: --severity-threshold=high
+      
+      - name: Note about Snyk
+        if: failure()
+        run: |
+          echo "ℹ️ Snyk security scanning is optional for this repository."
+          echo "To enable it, add a valid SNYK_TOKEN secret to the repository."
+          echo "Get your token from: https://app.snyk.io/account"

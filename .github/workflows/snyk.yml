@@ -9,6 +9,10 @@ on:
     # Run security scan weekly on Monday at 9am UTC
     - cron: '0 9 * * 1'
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   security:
     runs-on: ubuntu-latest

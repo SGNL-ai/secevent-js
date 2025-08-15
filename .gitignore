@@ -43,7 +43,6 @@ temp/
 logs/
 *.log
 
-# Package manager files
-package-lock.json
+# Package manager files (keeping package-lock.json for npm)
 yarn.lock
 pnpm-lock.yaml

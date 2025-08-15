@@ -124,7 +124,7 @@ const {
   Events, 
   SubjectIdentifiers,
   CAEP_EVENT_TYPES 
-} = require('@sgnl/secevent');
+} = require('@sgnl-ai/secevent');
 ```
 
 ### Parse a Token

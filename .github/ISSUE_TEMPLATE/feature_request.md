@@ -19,7 +19,7 @@ A clear and concise description of any alternative solutions or features you've 
 ## Proposed API
 ```typescript
 // Example of how the API might look
-import { Something } from '@sgnl/secevent';
+import { Something } from '@sgnl-ai/secevent';
 
 // Your proposed usage
 ```

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is @sgnl/secevent - a comprehensive JavaScript/TypeScript library for Security Event Tokens (SET) implementing RFC 8417, CAEP (Continuous Access Evaluation Protocol), and SSF (Shared Signals Framework). Built by SGNL.ai as a port of the Go secevent library.
+This is @sgnl-ai/secevent - a comprehensive JavaScript/TypeScript library for Security Event Tokens (SET) implementing RFC 8417, CAEP (Continuous Access Evaluation Protocol), and SSF (Shared Signals Framework). Built by SGNL.ai as a port of the Go secevent library.
 
 ## Development Commands
 

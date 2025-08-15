@@ -178,7 +178,7 @@ async function generateEventExample() {
  */
 async function main() {
   console.log('\nSecurity Event Token (SET) Examples');
-  console.log('Using the @sgnl/secevent library\n');
+  console.log('Using the @sgnl-ai/secevent library\n');
   
   let running = true;
   

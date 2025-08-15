@@ -1,6 +1,6 @@
 # Release Process
 
-This document describes the release process for @sgnl/secevent.
+This document describes the release process for @sgnl-ai/secevent.
 
 ## Prerequisites
 
@@ -110,13 +110,13 @@ npm publish --tag alpha --access public # For alpha
 - Feature-complete but needs testing
 - Version format: `x.y.z-beta.n`
 - Published to npm with `beta` tag
-- Users install with: `npm install @sgnl/secevent@beta`
+- Users install with: `npm install @sgnl-ai/secevent@beta`
 
 ### Alpha Release
 - Early development version
 - Version format: `x.y.z-alpha.n`
 - Published to npm with `alpha` tag
-- Users install with: `npm install @sgnl/secevent@alpha`
+- Users install with: `npm install @sgnl-ai/secevent@alpha`
 
 ## Version Numbering
 
@@ -168,7 +168,7 @@ If a release has critical issues:
 
 1. **npm deprecate the bad version**:
    ```bash
-   npm deprecate @sgnl/secevent@1.2.3 "Critical bug in this version, please upgrade"
+   npm deprecate @sgnl-ai/secevent@1.2.3 "Critical bug in this version, please upgrade"
    ```
 
 2. **Release a fix immediately**:
@@ -187,7 +187,7 @@ If a release has critical issues:
 
 ### npm publish fails
 - Check npm authentication: `npm whoami`
-- Verify permissions: `npm access ls-collaborators @sgnl/secevent`
+- Verify permissions: `npm access ls-collaborators @sgnl-ai/secevent`
 - Check registry: `npm config get registry`
 
 ### GitHub Actions fail

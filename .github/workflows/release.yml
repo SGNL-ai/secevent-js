@@ -199,4 +199,4 @@ jobs:
         run: |
           echo "🎉 Release successful!"
           echo "Release URL: ${{ needs.release.outputs.release-url }}"
-          echo "Package published to npm: https://www.npmjs.com/package/@sgnl/secevent"
+          echo "Package published to npm: https://www.npmjs.com/package/@sgnl-ai/secevent"

@@ -13,7 +13,7 @@ We release patches for security vulnerabilities. Which versions are eligible for
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-If you've found a security vulnerability in @sgnl/secevent, please report it to us through coordinated disclosure.
+If you've found a security vulnerability in @sgnl-ai/secevent, please report it to us through coordinated disclosure.
 
 Please send an email to security@sgnl.ai with:
 
@@ -46,7 +46,7 @@ If you have suggestions on how this process could be improved, please submit a p
 
 ## Security Best Practices for Users
 
-When using @sgnl/secevent in your applications:
+When using @sgnl-ai/secevent in your applications:
 
 1. **Keep the library updated**: Always use the latest version to get security patches
 2. **Validate inputs**: Always validate and sanitize inputs before processing

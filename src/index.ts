@@ -1,5 +1,5 @@
 /**
- * @sgnl/secevent - Security Event Token Library
+ * @sgnl-ai/secevent - Security Event Token Library
  * A comprehensive JavaScript/TypeScript implementation of RFC 8417, CAEP, and SSF
  *
  * Copyright (c) 2024 SGNL.ai
@@ -46,7 +46,7 @@ export { EVENT_TYPES, CAEP_EVENT_TYPES, SSF_EVENT_TYPES, RISC_EVENT_TYPES } from
  *   Events,
  *   SigningUtils,
  *   Algorithm
- * } from '@sgnl/secevent';
+ * } from '@sgnl-ai/secevent';
  *
  * // Create a signing key
  * const signingKey = SigningUtils.createSymmetricKey('your-secret', Algorithm.HS256);

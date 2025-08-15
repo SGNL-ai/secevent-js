@@ -22,7 +22,7 @@ A clear and concise description of what you expected to happen.
 ## Code Example
 ```typescript
 // Minimal code example that reproduces the issue
-import { createBuilder } from '@sgnl/secevent';
+import { createBuilder } from '@sgnl-ai/secevent';
 
 // Your code here
 ```
@@ -34,7 +34,7 @@ import { createBuilder } from '@sgnl/secevent';
 
 ## Environment
 - Node.js version: [e.g., 20.10.0]
-- @sgnl/secevent version: [e.g., 1.0.0]
+- @sgnl-ai/secevent version: [e.g., 1.0.0]
 - Operating System: [e.g., macOS 14.0]
 - TypeScript version (if applicable): [e.g., 5.3.3]
 

@@ -1,8 +1,8 @@
-# @sgnl/secevent
+# @sgnl-ai/secevent
 
 [![CI](https://github.com/SGNL-ai/secevent-js/actions/workflows/ci.yml/badge.svg)](https://github.com/SGNL-ai/secevent-js/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/SGNL-ai/secevent-js/branch/main/graph/badge.svg?token=YOUR_TOKEN)](https://codecov.io/gh/SGNL-ai/secevent-js)
-[![npm version](https://img.shields.io/npm/v/@sgnl/secevent.svg)](https://www.npmjs.com/package/@sgnl/secevent)
+[![npm version](https://img.shields.io/npm/v/@sgnl-ai/secevent.svg)](https://www.npmjs.com/package/@sgnl-ai/secevent)
 [![Known Vulnerabilities](https://snyk.io/test/github/SGNL-ai/secevent-js/badge.svg)](https://snyk.io/test/github/SGNL-ai/secevent-js)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
@@ -26,13 +26,13 @@ Built by [SGNL.ai](https://sgnl.ai) as part of our commitment to advancing conti
 ## Installation
 
 ```bash
-npm install @sgnl/secevent
+npm install @sgnl-ai/secevent
 ```
 
 or
 
 ```bash
-yarn add @sgnl/secevent
+yarn add @sgnl-ai/secevent
 ```
 
 ## Quick Start
@@ -52,7 +52,7 @@ import {
   Events, 
   SigningUtils,
   Algorithm 
-} from '@sgnl/secevent';
+} from '@sgnl-ai/secevent';
 
 // Create a signing key
 const signingKey = SigningUtils.createSymmetricKey('your-secret-key', Algorithm.HS256);
@@ -76,7 +76,7 @@ console.log(secEvent.jwt);
 ### Parsing and Verifying a Security Event Token
 
 ```typescript
-import { createParser, SigningUtils, Algorithm } from '@sgnl/secevent';
+import { createParser, SigningUtils, Algorithm } from '@sgnl-ai/secevent';
 
 // Create a parser
 const parser = createParser();
@@ -125,7 +125,7 @@ if (result.valid) {
 The library supports all standard subject identifier formats:
 
 ```typescript
-import { SubjectIdentifiers } from '@sgnl/secevent';
+import { SubjectIdentifiers } from '@sgnl-ai/secevent';
 
 // Email
 const emailSubject = SubjectIdentifiers.email('user@example.com');
@@ -173,7 +173,7 @@ const event = Events.sessionRevoked(complexSubject, Date.now() / 1000);
 ### Custom ID Generation
 
 ```typescript
-import { createBuilder, PrefixedGenerator, UuidGenerator } from '@sgnl/secevent';
+import { createBuilder, PrefixedGenerator, UuidGenerator } from '@sgnl-ai/secevent';
 
 const builder = createBuilder({
   idGenerator: new PrefixedGenerator('evt', new UuidGenerator())
@@ -185,7 +185,7 @@ const builder = createBuilder({
 ### Using Asymmetric Keys
 
 ```typescript
-import { SigningUtils, Algorithm } from '@sgnl/secevent';
+import { SigningUtils, Algorithm } from '@sgnl-ai/secevent';
 
 // Generate a key pair
 const { publicKey, privateKey } = await SigningUtils.generateKeyPair(Algorithm.RS256);
@@ -212,7 +212,7 @@ const result = await parser.verify(secEvent.jwt, verificationKey);
 ### JWKS URL Support
 
 ```typescript
-import { createParser } from '@sgnl/secevent';
+import { createParser } from '@sgnl-ai/secevent';
 
 // Parser with JWKS URL for automatic key resolution
 const parser = createParser({

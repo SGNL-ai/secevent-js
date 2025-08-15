@@ -1,4 +1,4 @@
-# Contributing to @sgnl/secevent
+# Contributing to @sgnl-ai/secevent
 
 Thank you for your interest in contributing to the Security Event Token library! We welcome contributions from the community and are grateful for your support in advancing security event standards.
 
@@ -171,4 +171,4 @@ Contributors will be recognized in our README and release notes. Thank you for h
 
 ---
 
-**Thank you for contributing to @sgnl/secevent!** 🎉
+**Thank you for contributing to @sgnl-ai/secevent!** 🎉

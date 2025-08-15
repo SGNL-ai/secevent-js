@@ -1,5 +1,5 @@
 {
-  "name": "@sgnl/secevent",
+  "name": "@sgnl-ai/secevent",
   "version": "1.0.0",
   "description": "A comprehensive JavaScript/TypeScript library for Security Event Tokens (SET) implementing RFC 8417, CAEP, and SSF standards",
   "main": "dist/index.js",
@@ -69,6 +69,9 @@
   "engines": {
     "node": ">=18.14.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "jose": "^5.2.0",
     "uuid": "^11.0.0"
@@ -90,5 +93,9 @@
     "tsup": "^8.0.1",
     "typedoc": "^0.28.10",
     "typescript": "^5.3.3"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
   }
 }

@@ -14,10 +14,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x, 20.x, 22.x, 24.x]
       fail-fast: false
         
     steps:
+      - name: Configure git line endings
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+        
       - name: Checkout code
         uses: actions/checkout@v4
         
@@ -54,6 +58,10 @@ jobs:
     needs: test
     
     steps:
+      - name: Configure git line endings
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+        
       - name: Checkout code
         uses: actions/checkout@v4
         
@@ -81,6 +89,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Configure git line endings
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+        
       - name: Checkout code
         uses: actions/checkout@v4
         

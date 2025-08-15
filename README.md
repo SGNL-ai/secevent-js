@@ -36,6 +36,12 @@ yarn add @sgnl/secevent
 
 ## Quick Start
 
+### Examples
+
+Complete working examples are available in the [`examples/`](examples/) directory:
+- **[basic-usage.js](examples/basic-usage.js)** - Interactive parsing and generation of SETs
+- **[caep-dev.js](examples/caep-dev.js)** - CAEP.dev SSF integration and testing
+
 ### Creating and Signing a Security Event Token
 
 ```typescript

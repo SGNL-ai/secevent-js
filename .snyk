@@ -1,0 +1,13 @@
+# Snyk (https://snyk.io) policy file
+version: v1.25.0
+
+# Ignore specific vulnerabilities
+ignore: {}
+
+# Patches to apply
+patch: {}
+
+# Language settings
+language-settings:
+  node:
+    enableLsp: true

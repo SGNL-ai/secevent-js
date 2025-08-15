@@ -6,6 +6,9 @@ const prettier = require('eslint-plugin-prettier');
 const prettierConfig = require('eslint-config-prettier');
 
 module.exports = [
+  {
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'docs/**', '*.config.js', '*.config.ts'],
+  },
   js.configs.recommended,
   prettierConfig,
   {
@@ -13,7 +16,7 @@ module.exports = [
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: __dirname,
         sourceType: 'module',
       },
@@ -27,14 +30,9 @@ module.exports = [
         module: 'writable',
         require: 'readonly',
         global: 'readonly',
-        jest: 'readonly',
-        describe: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-        beforeAll: 'readonly',
-        afterAll: 'readonly',
+        URL: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
       },
     },
     plugins: {
@@ -49,6 +47,23 @@ module.exports = [
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'prettier/prettier': 'error',
+      'no-undef': 'off', // TypeScript handles this
+    },
+  },
+  {
+    files: ['test/**/*.ts'],
+    languageOptions: {
+      globals: {
+        jest: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        test: 'readonly',
+      },
     },
   },
   {
@@ -65,8 +80,5 @@ module.exports = [
         require: 'readonly',
       },
     },
-  },
-  {
-    ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'docs/**'],
   },
 ];

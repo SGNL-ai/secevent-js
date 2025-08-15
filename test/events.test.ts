@@ -14,7 +14,7 @@ describe('Events', () => {
       const event = Events.sessionRevoked(subject, timestamp, 'security_policy');
 
       expect(CAEP_EVENT_TYPES.SESSION_REVOKED in event).toBe(true);
-      const data = event[CAEP_EVENT_TYPES.SESSION_REVOKED] as any;
+      const data = event[CAEP_EVENT_TYPES.SESSION_REVOKED] as Record<string, unknown>;
       expect(data.subject).toEqual(subject);
       expect(data.event_timestamp).toBe(timestamp);
       expect(data.reason).toBe('security_policy');
@@ -25,7 +25,7 @@ describe('Events', () => {
       const event = Events.tokenClaimsChange(subject, timestamp, claims);
 
       expect(CAEP_EVENT_TYPES.TOKEN_CLAIMS_CHANGE in event).toBe(true);
-      const data = event[CAEP_EVENT_TYPES.TOKEN_CLAIMS_CHANGE] as any;
+      const data = event[CAEP_EVENT_TYPES.TOKEN_CLAIMS_CHANGE] as Record<string, unknown>;
       expect(data.subject).toEqual(subject);
       expect(data.event_timestamp).toBe(timestamp);
       expect(data.claims).toEqual(claims);
@@ -39,7 +39,7 @@ describe('Events', () => {
       });
 
       expect(CAEP_EVENT_TYPES.CREDENTIAL_CHANGE in event).toBe(true);
-      const data = event[CAEP_EVENT_TYPES.CREDENTIAL_CHANGE] as any;
+      const data = event[CAEP_EVENT_TYPES.CREDENTIAL_CHANGE] as Record<string, unknown>;
       expect(data.subject).toEqual(subject);
       expect(data.event_timestamp).toBe(timestamp);
       expect(data.credential_type).toBe('password');
@@ -56,7 +56,7 @@ describe('Events', () => {
       });
 
       expect(CAEP_EVENT_TYPES.ASSURANCE_LEVEL_CHANGE in event).toBe(true);
-      const data = event[CAEP_EVENT_TYPES.ASSURANCE_LEVEL_CHANGE] as any;
+      const data = event[CAEP_EVENT_TYPES.ASSURANCE_LEVEL_CHANGE] as Record<string, unknown>;
       expect(data.current_level).toBe('high');
       expect(data.previous_level).toBe('medium');
       expect(data.change_direction).toBe('increase');
@@ -72,7 +72,7 @@ describe('Events', () => {
       });
 
       expect(CAEP_EVENT_TYPES.DEVICE_COMPLIANCE_CHANGE in event).toBe(true);
-      const data = event[CAEP_EVENT_TYPES.DEVICE_COMPLIANCE_CHANGE] as any;
+      const data = event[CAEP_EVENT_TYPES.DEVICE_COMPLIANCE_CHANGE] as Record<string, unknown>;
       expect(data.current_status).toBe('compliant');
       expect(data.previous_status).toBe('not_compliant');
       expect(data.compliance_policies).toEqual(['encryption', 'antivirus', 'os_version']);
@@ -85,7 +85,7 @@ describe('Events', () => {
       const event = Events.streamUpdated(effectiveTime);
 
       expect(SSF_EVENT_TYPES.STREAM_UPDATED in event).toBe(true);
-      const data = event[SSF_EVENT_TYPES.STREAM_UPDATED] as any;
+      const data = event[SSF_EVENT_TYPES.STREAM_UPDATED] as Record<string, unknown>;
       expect(data.effective_time).toBe(effectiveTime);
     });
 
@@ -93,7 +93,7 @@ describe('Events', () => {
       const event = Events.streamUpdated();
 
       expect(SSF_EVENT_TYPES.STREAM_UPDATED in event).toBe(true);
-      const data = event[SSF_EVENT_TYPES.STREAM_UPDATED] as any;
+      const data = event[SSF_EVENT_TYPES.STREAM_UPDATED] as Record<string, unknown>;
       expect(data.effective_time).toBeUndefined();
     });
 
@@ -102,7 +102,7 @@ describe('Events', () => {
       const event = Events.verification(state);
 
       expect(SSF_EVENT_TYPES.VERIFICATION in event).toBe(true);
-      const data = event[SSF_EVENT_TYPES.VERIFICATION] as any;
+      const data = event[SSF_EVENT_TYPES.VERIFICATION] as Record<string, unknown>;
       expect(data.state).toBe(state);
     });
 
@@ -110,7 +110,7 @@ describe('Events', () => {
       const event = Events.verification();
 
       expect(SSF_EVENT_TYPES.VERIFICATION in event).toBe(true);
-      const data = event[SSF_EVENT_TYPES.VERIFICATION] as any;
+      const data = event[SSF_EVENT_TYPES.VERIFICATION] as Record<string, unknown>;
       expect(data.state).toBeUndefined();
     });
   });
@@ -125,12 +125,12 @@ describe('Events', () => {
 
       const event = Events.sessionRevoked(complexSubject, timestamp, 'device_compromised');
 
-      expect(event).toHaveProperty(CAEP_EVENT_TYPES.SESSION_REVOKED);
-      const data = event[CAEP_EVENT_TYPES.SESSION_REVOKED] as any;
+      expect(CAEP_EVENT_TYPES.SESSION_REVOKED in event).toBe(true);
+      const data = event[CAEP_EVENT_TYPES.SESSION_REVOKED] as Record<string, unknown>;
       expect(data.subject).toEqual(complexSubject);
-      expect(data.subject.user.format).toBe('email');
-      expect(data.subject.device.format).toBe('uri');
-      expect(data.subject.session.format).toBe('opaque');
+      expect((data.subject as Record<string, unknown>).user).toMatchObject({ format: 'email' });
+      expect((data.subject as Record<string, unknown>).device).toMatchObject({ format: 'uri' });
+      expect((data.subject as Record<string, unknown>).session).toMatchObject({ format: 'opaque' });
     });
 
     it('should support aliases identifier', () => {
@@ -147,7 +147,7 @@ describe('Events', () => {
         friendly_name: 'YubiKey 5',
       });
 
-      const data = event[CAEP_EVENT_TYPES.CREDENTIAL_CHANGE] as any;
+      const data = event[CAEP_EVENT_TYPES.CREDENTIAL_CHANGE] as Record<string, unknown>;
       expect(data.subject.format).toBe('aliases');
       expect(data.subject.identifiers).toHaveLength(3);
     });

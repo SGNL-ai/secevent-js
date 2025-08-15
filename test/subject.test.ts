@@ -211,7 +211,9 @@ describe('SubjectIdentifiers', () => {
     });
 
     it('should handle various DID methods', () => {
-      const didKey = SubjectIdentifiers.did('did:key:z6MkpTHR8N8TLt9K3r4u7K7hdfKGqQ4HvLWSdja5VrCkdCNy');
+      const didKey = SubjectIdentifiers.did(
+        'did:key:z6MkpTHR8N8TLt9K3r4u7K7hdfKGqQ4HvLWSdja5VrCkdCNy',
+      );
       const didWeb = SubjectIdentifiers.did('did:web:example.com:user:alice');
       const didEthr = SubjectIdentifiers.did('did:ethr:0xb9c5714089478a327f09197987f16f9e5d936e8e');
 

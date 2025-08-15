@@ -155,7 +155,11 @@ export class SigningUtils {
   /**
    * Create a symmetric signing key
    */
-  static createSymmetricKey(secret: string, alg: Algorithm = Algorithm.HS256, kid?: string): SigningKey {
+  static createSymmetricKey(
+    secret: string,
+    alg: Algorithm = Algorithm.HS256,
+    kid?: string,
+  ): SigningKey {
     return {
       key: new TextEncoder().encode(secret) as unknown as KeyLike,
       alg,

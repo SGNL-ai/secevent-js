@@ -4,12 +4,7 @@
  */
 
 import { SignJWT } from 'jose';
-import {
-  SecEventPayload,
-  SignedSecEvent,
-  IdGenerator,
-  SigningKey,
-} from '../types/secevent';
+import { SecEventPayload, SignedSecEvent, IdGenerator, SigningKey } from '../types/secevent';
 import { SecurityEvent } from '../types/events';
 import { defaultIdGenerator } from '../id/generator';
 

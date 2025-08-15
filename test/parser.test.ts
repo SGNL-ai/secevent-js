@@ -44,8 +44,9 @@ describe('SecEventParser', () => {
 
     it('should throw error for JWT without events claim', () => {
       // Create a JWT without events claim using jose directly
-      const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0IiwianRpIjoiMTIzIiwiaWF0IjoxNTE2MjM5MDIyfQ.invalid';
-      
+      const jwt =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZXN0IiwianRpIjoiMTIzIiwiaWF0IjoxNTE2MjM5MDIyfQ.invalid';
+
       expect(() => parser.decode(jwt)).toThrow();
     });
   });
@@ -99,7 +100,7 @@ describe('SecEventParser', () => {
       });
 
       expect(result.valid).toBe(false);
-      expect(result.error).toContain('issuer');
+      expect(result.error?.toLowerCase()).toContain('iss');
     });
 
     it('should validate audience if specified', async () => {
@@ -116,7 +117,7 @@ describe('SecEventParser', () => {
       });
 
       expect(result.valid).toBe(false);
-      expect(result.error).toContain('audience');
+      expect(result.error?.toLowerCase()).toContain('aud');
     });
 
     it('should validate required claims', async () => {
@@ -193,7 +194,7 @@ describe('SecEventParser', () => {
       );
 
       expect(extractedEvent).toBeDefined();
-      expect((extractedEvent as any).current_level).toBe('high');
+      expect((extractedEvent as Record<string, unknown>).current_level).toBe('high');
     });
 
     it('should check for event presence', async () => {

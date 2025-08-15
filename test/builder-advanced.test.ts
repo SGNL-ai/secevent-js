@@ -2,8 +2,7 @@
  * Advanced tests for SecEventBuilder to achieve 100% coverage
  */
 
-import { SecEventBuilder, createBuilder } from '../src/builder/builder';
-import { SubjectIdentifiers } from '../src/types/subject';
+import { createBuilder } from '../src/builder/builder';
 import { Events } from '../src/types/events';
 import { SigningUtils, Algorithm } from '../src/signing/signer';
 
@@ -11,16 +10,13 @@ describe('SecEventBuilder Advanced', () => {
   describe('Builder with default signing key', () => {
     it('should use default signing key when none provided to sign()', async () => {
       const defaultKey = SigningUtils.createSymmetricKey('default-secret', Algorithm.HS256);
-      
+
       const builder = createBuilder({
         signingKey: defaultKey,
       });
 
       const event = Events.verification('test-state');
-      const signedEvent = await builder
-        .withIssuer('https://example.com')
-        .withEvent(event)
-        .sign(); // No key provided, should use default
+      const signedEvent = await builder.withIssuer('https://example.com').withEvent(event).sign(); // No key provided, should use default
 
       expect(signedEvent.jwt).toBeDefined();
       expect(signedEvent.payload).toBeDefined();
@@ -29,7 +25,7 @@ describe('SecEventBuilder Advanced', () => {
     it('should override default signing key when provided to sign()', async () => {
       const defaultKey = SigningUtils.createSymmetricKey('default-secret', Algorithm.HS256);
       const overrideKey = SigningUtils.createSymmetricKey('override-secret', Algorithm.HS256);
-      
+
       const builder = createBuilder({
         signingKey: defaultKey,
       });
@@ -86,9 +82,7 @@ describe('SecEventBuilder Advanced', () => {
 
       // The signing key should be back to default
       // We can test this by attempting to sign
-      builder
-        .withIssuer('https://example.com')
-        .withEvent(Events.verification());
+      builder.withIssuer('https://example.com').withEvent(Events.verification());
 
       // This should work with the default key
       expect(async () => await builder.sign()).not.toThrow();
@@ -98,7 +92,7 @@ describe('SecEventBuilder Advanced', () => {
   describe('Builder clone with signing key', () => {
     it('should clone with signing key', () => {
       const signingKey = SigningUtils.createSymmetricKey('secret', Algorithm.HS256);
-      
+
       const builder = createBuilder();
       builder
         .withIssuer('https://example.com')
@@ -168,10 +162,7 @@ describe('SecEventBuilder Advanced', () => {
       const builder = createBuilder();
       const event = Events.verification();
 
-      const payload = builder
-        .withIssuer('https://example.com')
-        .withEvent(event)
-        .buildPayload();
+      const payload = builder.withIssuer('https://example.com').withEvent(event).buildPayload();
 
       expect(payload.txn).toBeUndefined();
     });
@@ -180,10 +171,7 @@ describe('SecEventBuilder Advanced', () => {
       const builder = createBuilder();
       const event = Events.verification();
 
-      const payload = builder
-        .withIssuer('https://example.com')
-        .withEvent(event)
-        .buildPayload();
+      const payload = builder.withIssuer('https://example.com').withEvent(event).buildPayload();
 
       expect(payload.aud).toBeUndefined();
     });

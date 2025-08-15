@@ -172,10 +172,7 @@ export class SecEventParser {
   /**
    * Validate SET-specific requirements
    */
-  private validateSecEvent(
-    payload: SecEventPayload,
-    options: ValidationOptions,
-  ): string[] {
+  private validateSecEvent(payload: SecEventPayload, options: ValidationOptions): string[] {
     const errors: string[] = [];
 
     // Basic structure validation

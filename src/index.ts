@@ -1,7 +1,7 @@
 /**
  * @sgnl/secevent - Security Event Token Library
  * A comprehensive JavaScript/TypeScript implementation of RFC 8417, CAEP, and SSF
- * 
+ *
  * Copyright (c) 2024 SGNL.ai
  * Licensed under the MIT License
  */
@@ -29,12 +29,7 @@ export {
 } from './id/generator';
 
 // Signing
-export {
-  KeyManager,
-  SigningUtils,
-  Algorithm,
-  defaultKeyManager,
-} from './signing/signer';
+export { KeyManager, SigningUtils, Algorithm, defaultKeyManager } from './signing/signer';
 
 // Re-export commonly used functions
 export { SubjectIdentifiers } from './types/subject';
@@ -43,19 +38,19 @@ export { EVENT_TYPES, CAEP_EVENT_TYPES, SSF_EVENT_TYPES, RISC_EVENT_TYPES } from
 
 /**
  * Quick start example:
- * 
+ *
  * ```typescript
- * import { 
- *   createBuilder, 
- *   SubjectIdentifiers, 
- *   Events, 
+ * import {
+ *   createBuilder,
+ *   SubjectIdentifiers,
+ *   Events,
  *   SigningUtils,
- *   Algorithm 
+ *   Algorithm
  * } from '@sgnl/secevent';
- * 
+ *
  * // Create a signing key
  * const signingKey = SigningUtils.createSymmetricKey('your-secret', Algorithm.HS256);
- * 
+ *
  * // Build and sign a SET
  * const secEvent = await createBuilder()
  *   .withIssuer('https://example.com')
@@ -68,7 +63,7 @@ export { EVENT_TYPES, CAEP_EVENT_TYPES, SSF_EVENT_TYPES, RISC_EVENT_TYPES } from
  *     )
  *   )
  *   .sign(signingKey);
- * 
+ *
  * console.log(secEvent.jwt);
  * ```
  */

@@ -2,12 +2,7 @@
  * Tests for Signing utilities
  */
 
-import {
-  KeyManager,
-  SigningUtils,
-  Algorithm,
-  defaultKeyManager,
-} from '../src/signing/signer';
+import { KeyManager, SigningUtils, Algorithm, defaultKeyManager } from '../src/signing/signer';
 
 describe('Signing', () => {
   describe('KeyManager', () => {
@@ -82,24 +77,24 @@ describe('Signing', () => {
     describe('generateKeyPair', () => {
       it('should generate RSA key pair', async () => {
         const { publicKey, privateKey } = await SigningUtils.generateKeyPair(Algorithm.RS256);
-        
+
         expect(publicKey).toBeDefined();
         expect(privateKey).toBeDefined();
       });
 
       it('should generate key pair with custom options', async () => {
-        const { publicKey, privateKey } = await SigningUtils.generateKeyPair(
-          Algorithm.RS256,
-          { modulusLength: 2048, extractable: true }
-        );
-        
+        const { publicKey, privateKey } = await SigningUtils.generateKeyPair(Algorithm.RS256, {
+          modulusLength: 2048,
+          extractable: true,
+        });
+
         expect(publicKey).toBeDefined();
         expect(privateKey).toBeDefined();
       });
 
       it('should generate ES256 key pair', async () => {
         const { publicKey, privateKey } = await SigningUtils.generateKeyPair(Algorithm.ES256);
-        
+
         expect(publicKey).toBeDefined();
         expect(privateKey).toBeDefined();
       });
@@ -184,7 +179,9 @@ r8bbfqGoLER3r3mJKdmfMObHXfohCq3wJRK5s3oEPnK0rVEqJZNq8vYd+KTmONRd
 nI0hJnftu5WYG8srUlHVE/kA
 -----END PRIVATE KEY-----`;
 
-        const key = await SigningUtils.importPrivateKey(pkcs8, Algorithm.RS256, { extractable: true });
+        const key = await SigningUtils.importPrivateKey(pkcs8, Algorithm.RS256, {
+          extractable: true,
+        });
         expect(key).toBeDefined();
       });
     });
@@ -192,13 +189,13 @@ nI0hJnftu5WYG8srUlHVE/kA
     describe('importPublicKey', () => {
       it('should import a SPKI public key', async () => {
         const spki = `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz4Yd6JbWTgy9cm/DfHzD
-buPLyQimh4VScuXli6ySX0iYpVuJcYKCLkfLGZmFP8QM5Claiuq5q6mroBxIEt5g
-4xqgYAgrR5Wk/k3CYWFiSK5O2lwjQ0lcOWgS1lSRGs5AF80g4hhosRz0h0c7C77
-75j5yfXBOpFCamlZuCymhlGeg6Jpyy4wY+x4Q70370p54lVlpkJfC35ax6IZRnTA
-/cA3A/RI+i4CSRsHU6W6n8D+xwTlMWJhaQLQt4Lxmm27UCDGRZ29L7S8uPsDZX1
-scm+YEIIlbcLAUyTbxb2Kxii3uZi2I1owUYrCcUC6kZAZPZj9aRTv3RKsd5b3HzpZ
-DRUApwIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1KdtLbS8eYLJJdWTQBxY
+HJuB+6m6wnESVlgLRpKVVIP3JshM5AVqAQE3IK3Q5swQ6K3Qb/cjPEHAxiSQiETc
+MHd2kN7ux7EfGbrtgudnITZC9ArgTWIW08NW8z81USY0tKM59iAuGhRkAgkKyIE2
+Iv9bXmdCSu4tElPnt0DywjvxsigRUnL8s/66b4m27pLFIig/03jbGA5mPvWC3Pza
+snGIXAsOwhQ/TnmQCa1oGGJSeOz+xCbheKOxCXkhr7UzGwAMR7Wv2jweYIbp8Amp
+p+ATK1wB0cxRupEYgWLczrBhUO9toYgGg7xnY2Ra+W90ohM7y7cfl5912hCA2gmI
+mwIDAQAB
 -----END PUBLIC KEY-----`;
 
         const key = await SigningUtils.importPublicKey(spki, Algorithm.RS256);
@@ -207,16 +204,18 @@ DRUApwIDAQAB
 
       it('should import with extractable option', async () => {
         const spki = `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz4Yd6JbWTgy9cm/DfHzD
-buPLyQimh4VScuXli6ySX0iYpVuJcYKCLkfLGZmFP8QM5Claiuq5q6mroBxIEt5g
-4xqgYAgrR5Wk/k3CYWFiSK5O2lwjQ0lcOWgS1lSRGs5AF80g4hhosRz0h0c7C77
-75j5yfXBOpFCamlZuCymhlGeg6Jpyy4wY+x4Q70370p54lVlpkJfC35ax6IZRnTA
-/cA3A/RI+i4CSRsHU6W6n8D+xwTlMWJhaQLQt4Lxmm27UCDGRZ29L7S8uPsDZX1
-scm+YEIIlbcLAUyTbxb2Kxii3uZi2I1owUYrCcUC6kZAZPZj9aRTv3RKsd5b3HzpZ
-DRUApwIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1KdtLbS8eYLJJdWTQBxY
+HJuB+6m6wnESVlgLRpKVVIP3JshM5AVqAQE3IK3Q5swQ6K3Qb/cjPEHAxiSQiETc
+MHd2kN7ux7EfGbrtgudnITZC9ArgTWIW08NW8z81USY0tKM59iAuGhRkAgkKyIE2
+Iv9bXmdCSu4tElPnt0DywjvxsigRUnL8s/66b4m27pLFIig/03jbGA5mPvWC3Pza
+snGIXAsOwhQ/TnmQCa1oGGJSeOz+xCbheKOxCXkhr7UzGwAMR7Wv2jweYIbp8Amp
+p+ATK1wB0cxRupEYgWLczrBhUO9toYgGg7xnY2Ra+W90ohM7y7cfl5912hCA2gmI
+mwIDAQAB
 -----END PUBLIC KEY-----`;
 
-        const key = await SigningUtils.importPublicKey(spki, Algorithm.RS256, { extractable: true });
+        const key = await SigningUtils.importPublicKey(spki, Algorithm.RS256, {
+          extractable: true,
+        });
         expect(key).toBeDefined();
       });
     });
@@ -253,7 +252,7 @@ nI0hJnftu5WYG8srUlHVE/kA
 -----END PRIVATE KEY-----`;
 
         const signingKey = await SigningUtils.createSigningKey(pem, Algorithm.RS256, 'test-key');
-        
+
         expect(signingKey.key).toBeDefined();
         expect(signingKey.alg).toBe(Algorithm.RS256);
         expect(signingKey.kid).toBe('test-key');
@@ -261,25 +260,29 @@ nI0hJnftu5WYG8srUlHVE/kA
 
       it('should create signing key from PEM public key', async () => {
         const pem = `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz4Yd6JbWTgy9cm/DfHzD
-buPLyQimh4VScuXli6ySX0iYpVuJcYKCLkfLGZmFP8QM5Claiuq5q6mroBxIEt5g
-4xqgYAgrR5Wk/k3CYWFiSK5O2lwjQ0lcOWgS1lSRGs5AF80g4hhosRz0h0c7C77
-75j5yfXBOpFCamlZuCymhlGeg6Jpyy4wY+x4Q70370p54lVlpkJfC35ax6IZRnTA
-/cA3A/RI+i4CSRsHU6W6n8D+xwTlMWJhaQLQt4Lxmm27UCDGRZ29L7S8uPsDZX1
-scm+YEIIlbcLAUyTbxb2Kxii3uZi2I1owUYrCcUC6kZAZPZj9aRTv3RKsd5b3HzpZ
-DRUApwIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1KdtLbS8eYLJJdWTQBxY
+HJuB+6m6wnESVlgLRpKVVIP3JshM5AVqAQE3IK3Q5swQ6K3Qb/cjPEHAxiSQiETc
+MHd2kN7ux7EfGbrtgudnITZC9ArgTWIW08NW8z81USY0tKM59iAuGhRkAgkKyIE2
+Iv9bXmdCSu4tElPnt0DywjvxsigRUnL8s/66b4m27pLFIig/03jbGA5mPvWC3Pza
+snGIXAsOwhQ/TnmQCa1oGGJSeOz+xCbheKOxCXkhr7UzGwAMR7Wv2jweYIbp8Amp
+p+ATK1wB0cxRupEYgWLczrBhUO9toYgGg7xnY2Ra+W90ohM7y7cfl5912hCA2gmI
+mwIDAQAB
 -----END PUBLIC KEY-----`;
 
         const signingKey = await SigningUtils.createSigningKey(pem, Algorithm.RS256);
-        
+
         expect(signingKey.key).toBeDefined();
         expect(signingKey.alg).toBe(Algorithm.RS256);
         expect(signingKey.kid).toBeUndefined();
       });
 
       it('should create signing key from symmetric key string', async () => {
-        const signingKey = await SigningUtils.createSigningKey('my-secret-key', Algorithm.HS256, 'symmetric-key');
-        
+        const signingKey = await SigningUtils.createSigningKey(
+          'my-secret-key',
+          Algorithm.HS256,
+          'symmetric-key',
+        );
+
         expect(signingKey.key).toBeDefined();
         expect(signingKey.alg).toBe(Algorithm.HS256);
         expect(signingKey.kid).toBe('symmetric-key');
@@ -293,7 +296,7 @@ DRUApwIDAQAB
         };
 
         const signingKey = await SigningUtils.createSigningKey(jwk, Algorithm.HS256, 'jwk-key');
-        
+
         expect(signingKey.key).toBeDefined();
         expect(signingKey.alg).toBe(Algorithm.HS256);
         expect(signingKey.kid).toBe('jwk-key');
@@ -301,9 +304,9 @@ DRUApwIDAQAB
 
       it('should pass through KeyLike object', async () => {
         const { privateKey } = await SigningUtils.generateKeyPair(Algorithm.RS256);
-        
+
         const signingKey = await SigningUtils.createSigningKey(privateKey, Algorithm.RS256);
-        
+
         expect(signingKey.key).toBe(privateKey);
         expect(signingKey.alg).toBe(Algorithm.RS256);
       });
@@ -312,7 +315,7 @@ DRUApwIDAQAB
     describe('createSymmetricKey', () => {
       it('should create symmetric key with default algorithm', () => {
         const key = SigningUtils.createSymmetricKey('secret');
-        
+
         expect(key.key).toBeDefined();
         expect(key.alg).toBe(Algorithm.HS256);
         expect(key.kid).toBeUndefined();
@@ -320,7 +323,7 @@ DRUApwIDAQAB
 
       it('should create symmetric key with custom algorithm and kid', () => {
         const key = SigningUtils.createSymmetricKey('secret', Algorithm.HS384, 'my-key');
-        
+
         expect(key.key).toBeDefined();
         expect(key.alg).toBe(Algorithm.HS384);
         expect(key.kid).toBe('my-key');
@@ -330,7 +333,7 @@ DRUApwIDAQAB
         const key256 = SigningUtils.createSymmetricKey('secret', Algorithm.HS256);
         const key384 = SigningUtils.createSymmetricKey('secret', Algorithm.HS384);
         const key512 = SigningUtils.createSymmetricKey('secret', Algorithm.HS512);
-        
+
         expect(key256.alg).toBe(Algorithm.HS256);
         expect(key384.alg).toBe(Algorithm.HS384);
         expect(key512.alg).toBe(Algorithm.HS512);

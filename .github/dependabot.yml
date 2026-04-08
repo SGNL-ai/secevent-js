@@ -5,6 +5,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
       day: "monday"
       time: "04:00"
     open-pull-requests-limit: 10
@@ -27,6 +29,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
       day: "monday"
       time: "04:00"
     open-pull-requests-limit: 5
